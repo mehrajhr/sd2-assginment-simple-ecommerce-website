@@ -1,5 +1,6 @@
 let totalItem = 0;
 let totalPrice = 0;
+let newPrice = 0;
 const loadData = () => {
   fetch(
     "https://farez770.github.io/products_json-data-for-iiuc-sd2-assignment/data.json"
@@ -70,7 +71,29 @@ const addCardinAddtocardContainer = (id,price) => {
                             </div>
     `;
     addCardContainer.appendChild(div);
+
 };
+const handleDiscount = () =>{
+  const discountAmount = document.getElementById('discount-amount');
+  if(totalPrice > 500){
+    const discount = totalPrice * (10/100);
+    newPrice = totalPrice - discount;
+    discountAmount.innerHTML = 
+    `
+    <p>Discount : 10% - ${discount.toFixed(2)}</p>
+    <p>Total Amount : ${newPrice}</p>
+    `;
+  }
+  else{
+    const discount = 0;
+    newPrice = totalPrice - discount;
+    discountAmount.innerHTML = 
+    `
+    <p>Discount : 0% - $${discount.toFixed(2)}</p>
+    <p>Total Amount : $${newPrice + 10}</p>
+    `;
+  }
+}
 const handleOrderNow = () =>{
     if(totalItem >= 1){
         
